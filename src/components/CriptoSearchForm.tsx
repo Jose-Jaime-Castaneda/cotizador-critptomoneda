@@ -34,7 +34,7 @@ export default function CriptoSearchForm() {
         <form className="form"
             onSubmit={handleSubmit}
         >
-            {error && (<Alert ></Alert>)}
+            {error && (<Alert >{error}</Alert>)}
 
             <div className="field">
                 <label htmlFor="currency">Moneda:</label>
