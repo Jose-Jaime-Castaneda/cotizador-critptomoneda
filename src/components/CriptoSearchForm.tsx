@@ -1,7 +1,8 @@
-import { ChangeEvent, useState } from "react";
+import { ChangeEvent, FormEvent, useState } from "react";
 import { currencies } from "../data";
 import { useCryptoStore } from "../store/store";
 import { Pair } from "../types";
+import Alert from "./Alert";
 
 export default function CriptoSearchForm() {
     const cryptoCurrencies = useCryptoStore((state) => state.cryptoCurrencies)
@@ -9,6 +10,7 @@ export default function CriptoSearchForm() {
         currency: '',
         criptocurrency: ''
     })
+    const [error, setError] = useState('')
 
     const handleChange = (e: ChangeEvent<HTMLSelectElement>) => {
         setPair({
@@ -17,11 +19,26 @@ export default function CriptoSearchForm() {
         })
     }
 
+    const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+        e.preventDefault()
+
+        if (Object.values(pair).includes('')) {
+            setError('Hay valores vacíos')
+            return
+        }
+
+
+    }
+
     return (
-        <form className="form">
+        <form className="form"
+            onSubmit={handleSubmit}
+        >
+            {error && (<Alert ></Alert>)}
+
             <div className="field">
                 <label htmlFor="currency">Moneda:</label>
-                <select name="currency" id="currency" onChange={handleChange}>
+                <select name="currency" id="currency" value={pair.currency} onChange={handleChange}>
                     <option value="">-- Seleccione</option>
                     {currencies.map(currency => (
                         <option
@@ -35,7 +52,7 @@ export default function CriptoSearchForm() {
 
             <div className="field">
                 <label htmlFor="criptoCurrency">Criptomoneda:</label>
-                <select name="criptoCurrency" id="criptoCurrency" onChange={handleChange}>
+                <select name="criptoCurrency" id="criptoCurrency" value={pair.criptocurrency} onChange={handleChange}>
                     <option value="">-- Seleccione</option>
                     {
                         cryptoCurrencies.map(crypto => (
