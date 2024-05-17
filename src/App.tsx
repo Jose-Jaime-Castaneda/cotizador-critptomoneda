@@ -4,7 +4,7 @@ import { useCryptoStore } from "./store/store"
 import CryptoPriceDisplay from "./components/CryptoPriceDisplay"
 
 function App() {
-  const { fetchCryptos, cryptoPrice } = useCryptoStore()
+  const { fetchCryptos } = useCryptoStore()
 
   useEffect(() => {
     fetchCryptos()
@@ -18,14 +18,8 @@ function App() {
 
         <div className="content">
           <CriptoSearchForm />
+          <CryptoPriceDisplay />
         </div>
-
-        {Object.keys(cryptoPrice).length !== 0 && (
-          < div className="content">
-            <CryptoPriceDisplay />
-          </div>
-        )
-        }
 
       </div >
     </>
