@@ -5,10 +5,10 @@ import { Pair } from "../types";
 import Alert from "./Alert";
 
 export default function CriptoSearchForm() {
-    const cryptoCurrencies = useCryptoStore((state) => state.cryptoCurrencies)
+    const { cryptoCurrencies, fetchData } = useCryptoStore();
     const [pair, setPair] = useState<Pair>({
         currency: '',
-        criptocurrency: ''
+        criptoCurrency: ''
     })
     const [error, setError] = useState('')
 
@@ -26,7 +26,9 @@ export default function CriptoSearchForm() {
             setError('Hay valores vacíos')
             return
         }
+        setError('')
 
+        fetchData(pair);
 
     }
 
@@ -52,7 +54,7 @@ export default function CriptoSearchForm() {
 
             <div className="field">
                 <label htmlFor="criptoCurrency">Criptomoneda:</label>
-                <select name="criptoCurrency" id="criptoCurrency" value={pair.criptocurrency} onChange={handleChange}>
+                <select name="criptoCurrency" id="criptoCurrency" value={pair.criptoCurrency} onChange={handleChange}>
                     <option value="">-- Seleccione</option>
                     {
                         cryptoCurrencies.map(crypto => (
