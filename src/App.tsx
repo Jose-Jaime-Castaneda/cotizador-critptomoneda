@@ -4,7 +4,11 @@ function App() {
     <>
       <div
         className="container">
-        <h1>Cleaning...</h1>
+        <h1 className="app-title">Cotizador de <span>Criptomonedas</span></h1>
+
+        <div className="content">
+
+        </div>
       </div>
     </>
   )

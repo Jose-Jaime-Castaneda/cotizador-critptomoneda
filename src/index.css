@@ -23,3 +23,23 @@ body {
     width: 95%;
     margin: 0 auto;
 }
+
+.app-title {
+    font-size: 3.8rem;
+    margin-top: 5rem;
+    color: var(--white);
+}
+
+.app-title span {
+    display: block;
+    color: var(--primaty);
+    font-size: 4.4rem;
+}
+
+.content {
+    margin-top: 5rem;
+    padding: 6rem 2rem;
+    background-color: var(--white);
+    border-radius: 1rem;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+}
