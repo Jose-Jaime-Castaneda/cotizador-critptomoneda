@@ -1,0 +1,25 @@
+:root {
+    --white: #fff;
+    --primaty: #61ecbc;
+    --black: #182339;
+}
+
+html {
+    font-size: 62.5%;
+}
+
+body {
+    background-image: url('/bg.jpg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    min-height: 100vh;
+    font-family: "Outfit", sans-serif;
+    font-optical-sizing: auto;
+}
+
+.container {
+    max-width: 60rem;
+    width: 95%;
+    margin: 0 auto;
+}

@@ -2,7 +2,10 @@ function App() {
 
   return (
     <>
-      <h1>Cleaning...</h1>
+      <div
+        className="container">
+        <h1>Cleaning...</h1>
+      </div>
     </>
   )
 }
