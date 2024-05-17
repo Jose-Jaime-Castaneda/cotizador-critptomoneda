@@ -1,7 +1,24 @@
+import { useCryptoStore } from "../store/store";
+
 export default function CryptoPriceDisplay() {
+    const { cryptoPrice } = useCryptoStore()
+
     return (
-        <div>
-            CryptoPriceDisplay
+        <div className="result-wrapper">
+            <h2>
+                Cotización
+            </h2>
+
+            <div className="result">
+                <img src={`https://cryptocompare.com/${cryptoPrice.IMAGEURL}`} alt="Crypto Logo" />
+                <div>
+                    <p>El precio es de: <span>{cryptoPrice.PRICE}</span></p>
+                    <p>El precio más alto del día: <span>{cryptoPrice.HIGHDAY}</span></p>
+                    <p>El precio más bajo del día: <span>{cryptoPrice.LOWDAY}</span></p>
+                    <p>Variación últimas 24hrs: <span>{cryptoPrice.CHANGEPCT24HOUR}</span></p>
+                    <p>última actualización: <span>{cryptoPrice.LASTUPDATE}</span></p>
+                </div>
+            </div>
         </div>
     );
 };
