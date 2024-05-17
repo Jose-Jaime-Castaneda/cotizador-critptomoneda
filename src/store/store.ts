@@ -1,6 +1,12 @@
 import { create } from "zustand";
 import axios from "axios";
 import { CryptoCurrenciesSchema } from "../schema/cripto-schema";
+import { CryptoCurrency } from "../types";
+
+type CryptoStore = {
+  cryptoCurrencies: CryptoCurrency[];
+  fetchCryptos: () => Promise<void>;
+};
 
 async function getCryptos() {
   const url =
@@ -9,14 +15,20 @@ async function getCryptos() {
   const {
     data: { Data },
   } = await axios(url);
+  //console.log(Date);
   const result = CryptoCurrenciesSchema.safeParse(Data);
-  console.log(result);
-
-  console.log(Data);
+  if (result.success) {
+    return result.data;
+  }
 }
 
-export const useCryptoSrore = create(() => ({
-  fetchCryptos: () => {
-    getCryptos();
+export const useCryptoSrore = create<CryptoStore>((set) => ({
+  cryptoCurrencies: [],
+
+  fetchCryptos: async () => {
+    const cryptoCurrencies = await getCryptos();
+    set(() => ({
+      cryptoCurrencies,
+    }));
   },
 }));
