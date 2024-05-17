@@ -23,7 +23,7 @@ async function getCryptos() {
   }
 }
 
-export const useCryptoSrore = create<CryptoStore>()(
+export const useCryptoStore = create<CryptoStore>()(
   devtools((set) => ({
     cryptoCurrencies: [],
 
